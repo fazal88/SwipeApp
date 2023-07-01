@@ -1,5 +1,6 @@
 package com.fazal.assesment.utils
 
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -22,6 +23,8 @@ fun ImageView.setProductImage(item: String?) {
                     .centerCrop()
                     .placeholder(R.drawable.ic_placeholder)
                     .into(this)
+            }else{
+                this.setImageResource(R.drawable.ic_placeholder)
             }
         }
     } catch (e: Exception) {
@@ -40,5 +43,27 @@ fun TextView.setPrice(price: Double?) {
         }
     } catch (e: Exception) {
         e.printStackTrace()
+    }
+}
+
+
+@BindingAdapter("setVisibleGone")
+fun View.setVisibleGone(isVisible: Boolean?) {
+    isVisible?.let {
+        visibility = if (it) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
+    }
+}
+@BindingAdapter("setVisible")
+fun View.setVisible(isVisible: Boolean?) {
+    isVisible?.let {
+        visibility = if (it) {
+            View.VISIBLE
+        } else {
+            View.INVISIBLE
+        }
     }
 }

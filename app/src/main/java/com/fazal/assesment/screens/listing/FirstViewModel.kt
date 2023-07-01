@@ -24,7 +24,7 @@ class FirstViewModel(
     val loading: LiveData<Boolean>
         get() = _loading
 
-    private var _error = MutableLiveData<String>()
+    private var _error = MutableLiveData<String>("")
     val error: LiveData<String>
         get() = _error
 

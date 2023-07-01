@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="vm"
             type="com.fazal.assesment.screens.listing.FirstViewModel" />
@@ -18,18 +19,18 @@
             android:id="@+id/rvListProducts"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:orientation="vertical"
             android:paddingHorizontal="8dp"
             android:paddingTop="8dp"
             android:paddingBottom="64dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:itemCount="2"
-            tools:listitem="@layout/item_product"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:orientation="vertical"
-            android:clipToPadding="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            tools:itemCount="2"
+            tools:listitem="@layout/item_product" />
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -38,11 +39,40 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_marginEnd="@dimen/fab_margin"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="16dp"
             android:onClick="@{()->vm.goToAdd()}"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@android:drawable/ic_input_add" />
+
+        <TextView
+            android:id="@+id/tvLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/tvError"
+            android:text="Loading..."
+            android:textColor="@color/color_primary_light"
+            android:textSize="24sp"
+            setVisible="@{vm.loading}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvError"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:drawableTop="@drawable/ic_placeholder"
+            tools:text="Something went wrong!"
+            android:text="@{vm.error}"
+            setVisible="@{!vm.error.empty}"
+            android:textColor="@color/clr_error_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvLoading" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

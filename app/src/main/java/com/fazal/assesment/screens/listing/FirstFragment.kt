@@ -27,13 +27,14 @@ class FirstFragment : Fragment() {
     ): View? {
 
         _binding = FragmentFirstBinding.inflate(inflater, container, false)
-        _binding?.vm = vm
         return binding.root
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        _binding?.vm = vm
+        _binding?.lifecycleOwner = viewLifecycleOwner
 
         vm.navigateToAdd.observe(viewLifecycleOwner) {
             it?.let {

@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/FirstFragment"
         android:name="com.fazal.assesment.screens.listing.FirstFragment"
-        android:label="@string/first_fragment_label"
+        android:label="@string/list_products"
         tools:layout="@layout/fragment_first">
 
         <action
@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/SecondFragment"
         android:name="com.fazal.assesment.screens.add.SecondFragment"
-        android:label="@string/second_fragment_label"
+        android:label="@string/detail_product"
         tools:layout="@layout/fragment_second">
 
         <action

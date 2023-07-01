@@ -12,6 +12,6 @@ data class ProductItem(
     @SerializedName("product_name") var productName: String? = null,
     @SerializedName("product_type") var productType: String? = null,
     @SerializedName("price") var price: Double? = null,
-    @SerializedName("tax") var tax: Int? = null,
+    @SerializedName("tax") var tax: String? = null,
     @SerializedName("image") var image: String? = null
 ): Parcelable

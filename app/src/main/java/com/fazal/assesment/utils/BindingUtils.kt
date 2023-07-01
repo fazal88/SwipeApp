@@ -16,10 +16,13 @@ import java.text.DecimalFormat
 fun ImageView.setProductImage(item: String?) {
     try {
         item?.let {
-            Glide.with(this.context)
-                .load(item)
-                .placeholder(R.drawable.ic_placeholder)
-                .into(this)
+            if(it.isNotEmpty()){
+                Glide.with(this.context)
+                    .load(item)
+                    .centerCrop()
+                    .placeholder(R.drawable.ic_placeholder)
+                    .into(this)
+            }
         }
     } catch (e: Exception) {
         e.printStackTrace()

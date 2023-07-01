@@ -5,6 +5,8 @@ import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.fazal.assesment.api.SwipeApi
 import com.fazal.assesment.api.SwipeRepositoryImpl
 import com.fazal.assesment.screens.MainViewModel
+import com.fazal.assesment.screens.add.SecondViewModel
+import com.fazal.assesment.screens.listing.FirstViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -48,5 +50,11 @@ val appModule = module {
     }
     viewModel<MainViewModel> {
             MainViewModel(get())
+    }
+    viewModel<FirstViewModel> {
+        FirstViewModel(get())
+    }
+    viewModel<SecondViewModel> {
+        SecondViewModel(get())
     }
 }

@@ -15,22 +15,6 @@ class MainViewModel(
 
     init {
 
-        repo.getProducts().observeForever{
-            when(it.status){
-                Status.SUCCESS->{
-                    Log.d("TAG", "onCreate: success -> ${it.data?.body()}")
-                }
-                Status.ERROR->{
-
-                    Log.d("TAG", "onCreate: error -> ${it.data?.body()}")
-                }
-                Status.LOADING->{
-
-                    Log.d("TAG", "onCreate: loading -> ${it.data?.body()}")
-                }
-            }
-            Log.d("TAG", "onCreate: ${it.data?.body()}")
-        }
     }
 
 }

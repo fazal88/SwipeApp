@@ -1,4 +1,4 @@
-package com.fazal.assesment.screens.listing
+package com.fazal.assesment.screens.add
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
  * Created by Fazal on 02/07/23.
  * Copyright (c) 2023 Mohd Fazal Shaikh. All rights reserved.
  */
-class FirstViewModel(
+class SecondViewModel(
     private val repo : SwipeRepositoryImpl
 ) : ViewModel() {
 

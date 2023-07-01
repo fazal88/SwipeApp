@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.fazal.assesment.SecondFragmentDirections
 import com.fazal.assesment.databinding.FragmentSecondBinding
 /**
  * Created by Fazal on 01/07/23.

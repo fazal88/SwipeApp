@@ -11,8 +11,8 @@ import retrofit2.Response
  */
 interface SwipeRepository {
 
-     fun getProducts() : LiveData<Resource<Response<List<ProductItem>>>>
+     suspend fun getProducts()
 
-     fun saveProduct(request : Any): LiveData<Resource<Response<ResponseSaveProduct>>>
+     suspend fun saveProduct(request : Any)
 
 }

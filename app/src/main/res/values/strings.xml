@@ -45,4 +45,5 @@
     </string>
     <string name="list_products">Product Listing</string>
     <string name="detail_product">Product Details</string>
+    <string name="tax_percent">%1$s%%</string>
 </resources>

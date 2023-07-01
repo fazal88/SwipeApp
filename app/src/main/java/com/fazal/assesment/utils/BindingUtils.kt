@@ -28,11 +28,11 @@ fun ImageView.setProductImage(item: String?) {
 
 
 @BindingAdapter("setPrice")
-fun TextView.setPrice(price: String?) {
+fun TextView.setPrice(price: Double?) {
     try {
         price?.let {
             val df = DecimalFormat("#.##")
-            val roundOff = df.format(price.toDouble())
+            val roundOff = df.format(it)
             text = "₹$roundOff"
         }
     } catch (e: Exception) {

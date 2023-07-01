@@ -5,6 +5,7 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.fazal.assesment.R
+import java.text.DecimalFormat
 
 /**
  * Created by Fazal on 02/07/23.
@@ -29,7 +30,11 @@ fun ImageView.setProductImage(item: String?) {
 @BindingAdapter("setPrice")
 fun TextView.setPrice(price: String?) {
     try {
-        text = "₹${price ?: "NA"}"
+        price?.let {
+            val df = DecimalFormat("#.##")
+            val roundOff = df.format(price.toDouble())
+            text = "₹$roundOff"
+        }
     } catch (e: Exception) {
         e.printStackTrace()
     }

@@ -14,6 +14,7 @@ import java.text.DecimalFormat
  * Copyright (c) 2023 Mohd Fazal Shaikh. All rights reserved.
  */
 
+/*adapter to set image in xml via URL*/
 @BindingAdapter("setImageUrl")
 fun ImageView.setImageUrl(item: String?) {
     try {
@@ -32,6 +33,9 @@ fun ImageView.setImageUrl(item: String?) {
         e.printStackTrace()
     }
 }
+
+
+/*adapter to set image in xml via URi*/
 @BindingAdapter("setImageUri")
 fun ImageView.setImageUri(item: Uri?) {
     try {
@@ -52,6 +56,8 @@ fun ImageView.setImageUri(item: Uri?) {
 }
 
 
+/*adapter to set price with rupee symbol*/
+/*also rounding off upto 2 decimals*/
 @BindingAdapter("setPrice")
 fun TextView.setPrice(price: Double?) {
     try {
@@ -65,7 +71,7 @@ fun TextView.setPrice(price: Double?) {
     }
 }
 
-
+/*adapter to toggle visibility between VISIBLE & GONE*/
 @BindingAdapter("setVisibleGone")
 fun View.setVisibleGone(isVisible: Boolean?) {
     isVisible?.let {
@@ -76,6 +82,9 @@ fun View.setVisibleGone(isVisible: Boolean?) {
         }
     }
 }
+
+
+/*adapter to toggle visibility between VISIBLE & INVISIBLE*/
 @BindingAdapter("setVisible")
 fun View.setVisible(isVisible: Boolean?) {
     isVisible?.let {

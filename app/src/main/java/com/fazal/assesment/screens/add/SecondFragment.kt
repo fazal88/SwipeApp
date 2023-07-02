@@ -50,6 +50,7 @@ class SecondFragment : Fragment() {
         _binding?.vm = vm
         _binding?.lifecycleOwner = viewLifecycleOwner
 
+        /*observers for all events*/
         vm.navigateToList.observe(viewLifecycleOwner) {
             it?.let {
                 if (it) {
@@ -98,6 +99,7 @@ class SecondFragment : Fragment() {
             }
         }
 
+        /*observer for clearing on edit after validations error are visible*/
         vm.name.observe(viewLifecycleOwner) {
             binding.name.isErrorEnabled = it.isEmpty()
         }
@@ -111,6 +113,7 @@ class SecondFragment : Fragment() {
             binding.price.isErrorEnabled = it.isEmpty()||it.toDouble() <= 0
         }
 
+        /*observer with respect to error events*/
         vm.nameError.observe(viewLifecycleOwner) {
             binding.name.isErrorEnabled = it.isNotEmpty()
             if (it.isNotEmpty()) binding.name.error = it
@@ -132,6 +135,11 @@ class SecondFragment : Fragment() {
     }
 
 
+    /*opens images picker with requirements like
+    * compress & limit size
+    * crop in 1:1 dimension ration i.e; Square
+    * limiting file type/ mime types to jpeg & png
+    * */
     private fun openImagePicker() {
         ImagePicker.with(this)
             .compress(1024)//Final image size will be less than 1 MB(Optional)
@@ -147,7 +155,10 @@ class SecondFragment : Fragment() {
             }
     }
 
-
+    /* to fetch image from gallery or camera via uri.
+    * this is new component activity implementation where one
+    * don't have to rely on activity to fetch a data in onActivityResult
+    * */
     private val startForProfileImageResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
         val resultCode = result.resultCode
         val data = result.data

@@ -8,7 +8,7 @@ import kotlinx.parcelize.Parcelize
  * Copyright (c) 2023 Mohd Fazal Shaikh. All rights reserved.
  */
 @Parcelize
-data class ProductItem(
+data class ProductItem( //model data class to hold items of product list
     @SerializedName("product_name") var productName: String? = null,
     @SerializedName("product_type") var productType: String? = null,
     @SerializedName("price") var price: Double? = null,

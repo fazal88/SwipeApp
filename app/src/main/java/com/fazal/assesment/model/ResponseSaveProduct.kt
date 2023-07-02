@@ -10,7 +10,7 @@ import kotlinx.parcelize.Parcelize
  */
 @Parcelize
 data class ResponseSaveProduct(
-
+//model data class to handle response of save product details api
     @SerializedName("message") var message: String? = null,
     @SerializedName("product_details") var productDetails: ProductItem? = ProductItem(),
     @SerializedName("product_id") var productId: Int? = null,

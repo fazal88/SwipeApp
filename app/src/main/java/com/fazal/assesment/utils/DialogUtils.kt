@@ -15,6 +15,8 @@ import com.fazal.assesment.databinding.DialogTwoButtonBinding
  * Copyright (c) 2023 Mohd Fazal Shaikh. All rights reserved.
  */
 
+/*added a common pattern of dialog that is
+two button dialog so that can be use multiple places*/
 fun showTwoButtonDialog(
     context: Context,
     title: String? = null,

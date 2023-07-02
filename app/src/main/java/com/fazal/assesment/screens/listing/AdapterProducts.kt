@@ -13,7 +13,7 @@ import com.fazal.assesment.model.ProductItem
  * Created by Fazal on 01/07/23.
  * Copyright (c) 2023 Mohd Fazal Shaikh. All rights reserved.
  */
-class AdapterProducts : ListAdapter<ProductItem, AdapterProducts.ViewHolder>(MatchesDiffCallback()) {
+class AdapterProducts : ListAdapter<ProductItem, AdapterProducts.ViewHolder>(ProductDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder.from(parent)
@@ -21,7 +21,7 @@ class AdapterProducts : ListAdapter<ProductItem, AdapterProducts.ViewHolder>(Mat
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
         holder.bind(getItem(position))
 
-    class MatchesDiffCallback : DiffUtil.ItemCallback<ProductItem>() {
+    class ProductDiffCallback : DiffUtil.ItemCallback<ProductItem>() {
         override fun areItemsTheSame(oldItem: ProductItem, newItem: ProductItem): Boolean =
             oldItem == newItem
 

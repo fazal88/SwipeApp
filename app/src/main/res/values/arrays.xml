@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="types">
+        <item>Automotive</item>
+        <item>Books</item>
+        <item>Entertainment</item>
+        <item>Electronics</item>
+        <item>Fashion &amp; Beauty</item>
+        <item>Furniture</item>
+        <item>Groceries</item>
+        <item>Health care</item>
+        <item>Pet Supplies</item>
+        <item>Sports</item>
+        <item>Stationary</item>
+        <item>Toys</item>
+    </string-array>
+</resources>

@@ -48,9 +48,6 @@ val appModule = module {
     single<SwipeRepositoryImpl> {
         SwipeRepositoryImpl(get())
     }
-    viewModel<MainViewModel> {
-            MainViewModel(get())
-    }
     viewModel<FirstViewModel> {
         FirstViewModel(get())
     }

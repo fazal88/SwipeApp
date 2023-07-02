@@ -45,23 +45,38 @@ class FirstFragment : Fragment() {
             }
         }
 
-        binding.rvListProducts.adapter = AdapterProducts()
+        val adapter = AdapterProducts()
             .apply {
-            vm.list.observe(viewLifecycleOwner) {
-                when (it.status) {
-                    Status.LOADING -> {
-                        vm.showLoading(true)
-                    }
-                    Status.ERROR -> {
-                        vm.showLoading(false)
-                        vm.setError(it.message!!)
-                    }
-                    Status.SUCCESS -> {
-                        vm.showLoading(false)
-                        it.data?.body().let { list ->
-                            this.submitList(list)
+                vm.list.observe(viewLifecycleOwner) { resource ->
+                    when (resource.status) {
+                        Status.LOADING -> {
+                            vm.showLoading(true)
+                        }
+                        Status.ERROR -> {
+                            vm.showLoading(false)
+                            vm.setError(resource.message!!)
+                        }
+                        Status.SUCCESS -> {
+                            vm.showLoading(false)
+                            resource.data?.body().let { list ->
+                                this.submitList(list)
+                            }
                         }
                     }
+                }
+            }
+        binding.rvListProducts.adapter = adapter
+
+        vm.searchQuery.observe(viewLifecycleOwner) { query ->
+            vm.list.value?.data?.body()?.let { list ->
+                if (query.isNullOrEmpty()) {
+                    adapter.submitList(list)
+                } else {
+                    val filterList = list.filter {
+                        it.productName?.contains(query,true)!! || it.productType?.contains(query,true)!!
+
+                    }
+                    adapter.submitList(filterList)
                 }
             }
         }

@@ -138,7 +138,10 @@ class SecondFragment : Fragment() {
     private fun openImagePicker() {
         ImagePicker.with(this)
             .compress(1024)//Final image size will be less than 1 MB(Optional)
-            .galleryMimeTypes(arrayOf("jpeg","png"))
+            .galleryMimeTypes(arrayOf(
+                "image/png",
+                "image/jpg",
+                "image/jpeg"))
             .cropSquare()
             .maxResultSize(1024, 1024)  //Final image resolution will be less than 1080 x 1080(Optional)
             .createIntent { intent ->

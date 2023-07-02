@@ -28,6 +28,12 @@ class FirstViewModel(
     val error: LiveData<String>
         get() = _error
 
+    val searchQuery = MutableLiveData<String>("")
+
+    fun clearSearch(){
+        searchQuery.postValue("")
+    }
+
     fun goToAdd(){
         _navigateToAdd.postValue(true)
     }

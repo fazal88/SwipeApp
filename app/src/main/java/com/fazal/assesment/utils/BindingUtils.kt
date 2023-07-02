@@ -1,5 +1,6 @@
 package com.fazal.assesment.utils
 
+import android.net.Uri
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -13,11 +14,29 @@ import java.text.DecimalFormat
  * Copyright (c) 2023 Mohd Fazal Shaikh. All rights reserved.
  */
 
-@BindingAdapter("setProductImage")
-fun ImageView.setProductImage(item: String?) {
+@BindingAdapter("setImageUrl")
+fun ImageView.setImageUrl(item: String?) {
     try {
         item?.let {
             if(it.isNotEmpty()){
+                Glide.with(this.context)
+                    .load(item)
+                    .centerCrop()
+                    .placeholder(R.drawable.ic_placeholder)
+                    .into(this)
+            }else{
+                this.setImageResource(R.drawable.ic_placeholder)
+            }
+        }
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+}
+@BindingAdapter("setImageUri")
+fun ImageView.setImageUri(item: Uri?) {
+    try {
+        item?.let {
+            if(it.toString().isNotEmpty()){
                 Glide.with(this.context)
                     .load(item)
                     .centerCrop()

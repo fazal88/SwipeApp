@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="vm"
             type="com.fazal.assesment.screens.add.SecondViewModel" />
@@ -15,8 +16,12 @@
         android:layout_height="match_parent">
 
         <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/tvError"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:context=".screens.add.SecondFragment">
 
             <LinearLayout
@@ -24,91 +29,119 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <ImageView
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="16dp"
+                    android:src="@drawable/ic_placeholder"
+                    app:setImageUri="@{vm.fileUri}" />
+
+                <Button
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    setVisibleGone="@{vm.fileUri.toString().empty}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:ems="10"
+                    android:onClick="@{()->vm.upload()}"
+                    android:text="Upload" />
+
+                <Button
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    setVisibleGone="@{!vm.fileUri.toString().empty}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:ems="10"
+                    android:onClick="@{()->vm.remove()}"
+                    android:text="Remove" />
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:boxBackgroundMode="outline"
-                    app:errorEnabled="true"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="16dp"
+                    app:boxBackgroundMode="outline"
+                    app:errorEnabled="true"
                     app:errorTextColor="@color/clr_error_light">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:hint="Product Name"
                         android:inputType="textCapWords"
                         android:singleLine="true"
-                        android:textSize="16sp"
-                        android:hint="Product Name"
-                        android:text="@={vm.name}" />
+                        android:text="@={vm.name}"
+                        android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/type"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:boxBackgroundMode="outline"
-                    app:errorEnabled="true"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="16dp"
+                    app:boxBackgroundMode="outline"
+                    app:errorEnabled="true"
                     app:errorTextColor="@color/clr_error_light">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_type"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:hint="Product Type"
                         android:inputType="textCapWords"
                         android:singleLine="true"
-                        android:textSize="16sp"
-                        android:hint="Product Type"
-                        android:text="@={vm.type}" />
+                        android:text="@={vm.type}"
+                        android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tax"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:boxBackgroundMode="outline"
-                    app:errorEnabled="true"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="16dp"
+                    app:boxBackgroundMode="outline"
+                    app:errorEnabled="true"
                     app:errorTextColor="@color/clr_error_light">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_tax"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:hint="Tax"
                         android:inputType="numberDecimal"
                         android:singleLine="true"
-                        android:textSize="16sp"
-                        android:hint="Tax"
-                        android:text="@={vm.tax}" />
+                        android:text="@={vm.tax}"
+                        android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:boxBackgroundMode="outline"
-                    app:errorEnabled="true"
-                    app:prefixText="₹"
-                    app:prefixTextColor="@color/design_default_color_primary"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="16dp"
-                    app:errorTextColor="@color/clr_error_light">
+                    app:boxBackgroundMode="outline"
+                    app:errorEnabled="true"
+                    app:errorTextColor="@color/clr_error_light"
+                    app:prefixText="₹"
+                    app:prefixTextColor="@color/design_default_color_primary">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_price"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:hint="Selling price"
                         android:inputType="numberDecimal"
                         android:singleLine="true"
+                        android:text="@={vm.price}"
                         android:textSize="16sp"
-                        android:hint="Selling price"
-                        tools:text="1000"
-                        android:text="@={vm.price}" />
+                        tools:text="1000" />
                 </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
@@ -117,12 +150,41 @@
 
         <Button
             android:id="@+id/button_second"
+            style="@style/Widget.Material3.Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:text="@string/save"
             android:onClick="@{()->vm.save()}"
+            android:text="@string/save"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            setVisibleGone="@{!vm.loading.empty}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:autoSizeTextType="uniform"
+            android:background="#33000000"
+            android:gravity="center"
+            android:maxLines="1"
+            android:padding="64dp"
+            android:text="@{vm.loading}"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Loading..."
+            tools:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvError"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{vm.error}"
+            android:textColor="@color/clr_error_light"
+            app:layout_constraintBottom_toTopOf="@+id/button_second"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 

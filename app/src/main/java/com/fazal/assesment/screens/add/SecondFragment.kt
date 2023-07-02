@@ -1,12 +1,19 @@
 package com.fazal.assesment.screens.add
 
+import android.app.Activity
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.fazal.assesment.api.Status
 import com.fazal.assesment.databinding.FragmentSecondBinding
+import com.github.dhaval2404.imagepicker.ImagePicker
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -49,6 +56,25 @@ class SecondFragment : Fragment() {
                 }
             }
         }
+
+        vm.clickedUpload.observe(viewLifecycleOwner) {
+            it?.let {
+                if (it) {
+                    openImagePicker()
+                    vm.reset()
+                }
+            }
+        }
+
+        vm.clickedRemove.observe(viewLifecycleOwner) {
+            it?.let {
+                if (it) {
+                    vm.setUri(Uri.parse(""))
+                    vm.reset()
+                }
+            }
+        }
+
         vm.name.observe(viewLifecycleOwner) {
             binding.name.isErrorEnabled = it.isEmpty()
         }
@@ -81,6 +107,59 @@ class SecondFragment : Fragment() {
         vm.priceError.observe(viewLifecycleOwner) {
             binding.price.isErrorEnabled = it.isNotEmpty()
             if (it.isNotEmpty()) binding.price.error = it
+        }
+
+        vm.saveResponse.observe(viewLifecycleOwner) {
+            when (it.status) {
+                Status.LOADING -> {
+                    vm.setLoadingText("Saving...")
+                }
+                Status.ERROR -> {
+                    vm.setLoadingText("")
+                    vm.setError(it.message!!)
+                }
+                Status.SUCCESS -> {
+                    vm.setLoadingText("")
+                    //showDialog
+                    vm.goToList()
+                }
+            }
+        }
+
+
+
+    }
+
+    private fun openImagePicker() {
+        ImagePicker.with(this)
+            .compress(1024)//Final image size will be less than 1 MB(Optional)
+            .cropSquare()
+            .maxResultSize(1024, 1024)  //Final image resolution will be less than 1080 x 1080(Optional)
+            .createIntent { intent ->
+                //binding.pbLoading.visibility = View.VISIBLE
+                startForProfileImageResult.launch(intent)
+            }
+    }
+
+
+    private val startForProfileImageResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+        val resultCode = result.resultCode
+        val data = result.data
+
+        when (resultCode) {
+            Activity.RESULT_OK -> {
+                //Image Uri will not be null for RESULT_OK
+                data?.data?.let {vm.setUri(it)}
+            }
+            ImagePicker.RESULT_ERROR -> {
+                Toast.makeText(requireContext(), ImagePicker.getError(data), Toast.LENGTH_SHORT)
+                    .show()
+                //binding.pbLoading.visibility = View.INVISIBLE
+            }
+            else -> {
+                Toast.makeText(requireContext(), "Task Cancelled", Toast.LENGTH_SHORT).show()
+                //binding.pbLoading.visibility = View.INVISIBLE
+            }
         }
     }
 

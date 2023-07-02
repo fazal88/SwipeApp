@@ -128,7 +128,7 @@ class SecondViewModel(
         _clickedRemove.postValue(false)
         _loading.postValue("")
         _error.postValue("")
-
+        repo.resetSaveResponse()
     }
 
     fun setUri(uri: Uri) {

@@ -35,9 +35,13 @@ class SwipeRepositoryImpl(
     }
 
 
-    private val _saveResponse = MutableLiveData<Resource<Response<ResponseSaveProduct>>>()
-    val saveResponse: LiveData<Resource<Response<ResponseSaveProduct>>>
+    private val _saveResponse = MutableLiveData<Resource<Response<ResponseSaveProduct>>?>()
+    val saveResponse: LiveData<Resource<Response<ResponseSaveProduct>>?>
         get() = _saveResponse
+
+    fun resetSaveResponse(){
+        _saveResponse.postValue(null)
+    }
 
     override suspend fun saveProduct(
         partMap: Map<String, RequestBody?>,

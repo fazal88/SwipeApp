@@ -110,18 +110,20 @@ class SecondFragment : Fragment() {
         }
 
         vm.saveResponse.observe(viewLifecycleOwner) {
-            when (it.status) {
-                Status.LOADING -> {
-                    vm.setLoadingText("Saving...")
-                }
-                Status.ERROR -> {
-                    vm.setLoadingText("")
-                    vm.setError(it.message!!)
-                }
-                Status.SUCCESS -> {
-                    vm.setLoadingText("")
-                    //showDialog
-                    vm.goToList()
+            it?.let {
+                when (it.status) {
+                    Status.LOADING -> {
+                        vm.setLoadingText("Saving...")
+                    }
+                    Status.ERROR -> {
+                        vm.setLoadingText("")
+                        vm.setError(it.message!!)
+                    }
+                    Status.SUCCESS -> {
+                        vm.setLoadingText("")
+                        //showDialog
+                        vm.goToList()
+                    }
                 }
             }
         }

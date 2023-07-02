@@ -5,4 +5,9 @@
     <color name="grey">#d3d3d3</color>
     <color name="clr_error_light">#CF6679</color>
     <color name="color_primary_light">#BA86FC</color>
+    <color name="dim_white_type">#eeffffff</color>
+
+
+
+    <color name="Blue">#a155b9</color>
 </resources>

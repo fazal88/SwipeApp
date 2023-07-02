@@ -15,22 +15,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:background="@drawable/back_solid_rc_8dp"
-        android:elevation="2dp"
-        android:padding="16dp">
+        android:background="@drawable/back_item_product"
+        android:elevation="2dp">
 
         <ImageView
             android:id="@+id/imageView"
+            setImageUrl="@{vm.image}"
             android:layout_width="64dp"
+            android:layout_margin="16dp"
             android:layout_height="0dp"
-            app:layout_constraintDimensionRatio="1:1"
             android:src="@drawable/ic_placeholder"
             android:textSize="16sp"
-            setImageUrl="@{vm.image}"
-            app:layout_constraintVertical_bias="0"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0" />
 
         <TextView
             android:id="@+id/tvName"
@@ -38,13 +38,12 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:paddingHorizontal="16dp"
-            android:text="@{vm.productName}"
+            android:text="@{vm.productName.trim()}"
             android:textColor="@color/black"
-            android:layout_marginTop="4dp"
-            app:layout_constraintBottom_toTopOf="@+id/tvType"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/tvType"
             tools:text="Home Sweet Home" />
 
         <TextView
@@ -54,26 +53,26 @@
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:letterSpacing="0.03"
+            android:layout_margin="8dp"
             android:lineSpacingExtra="4dp"
-            android:paddingHorizontal="16dp"
-            android:textStyle="italic"
-            android:text="@{vm.productType}"
+            android:text="@{vm.productType.trim()}"
+            android:textColor="@color/Blue"
             android:textSize="12sp"
+            android:textStyle="italic|bold"
             app:layout_constraintEnd_toEndOf="@+id/tvName"
-            app:layout_constraintStart_toStartOf="@+id/tvName"
-            app:layout_constraintTop_toBottomOf="@+id/tvName"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Appliance" />
 
         <TextView
             android:id="@+id/tvTax"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:gravity="center"
             android:paddingHorizontal="16dp"
             android:text="@{vm.tax}"
-            app:layout_constraintBottom_toBottomOf="@+id/tvPrice"
-            app:layout_constraintStart_toStartOf="@+id/tvType"
-            app:layout_constraintTop_toTopOf="@+id/tvPrice"
+            app:layout_constraintStart_toStartOf="@+id/tvName"
+            app:layout_constraintTop_toBottomOf="@+id/tvName"
             tools:text="18%" />
 
         <TextView
@@ -81,14 +80,13 @@
             setPrice="@{vm.price}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="16dp"
-            android:textSize="18sp"
-            android:layout_marginTop="8dp"
             android:textColor="@color/black"
-            tools:text="2000"
+            android:textSize="18sp"
+            android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvType" />
+            app:layout_constraintTop_toBottomOf="@+id/tvName"
+            tools:text="2000" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

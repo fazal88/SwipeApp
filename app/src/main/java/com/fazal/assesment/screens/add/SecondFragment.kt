@@ -26,9 +26,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  * Created by Fazal on 01/07/23.
  * Copyright (c) 2023 Mohd Fazal Shaikh. All rights reserved.
  */
-/**
- * A simple [Fragment] subclass as the second destination in the navigation.
- */
 class SecondFragment : Fragment() {
 
 
@@ -82,6 +79,24 @@ class SecondFragment : Fragment() {
                 }
             }
         }
+        vm.saveResponse.observe(viewLifecycleOwner) {
+            it?.let {
+                when (it.status) {
+                    Status.LOADING -> {
+                        vm.setLoadingText("Saving...")
+                    }
+                    Status.ERROR -> {
+                        vm.setLoadingText("")
+                        vm.setError(it.message!!)
+                    }
+                    Status.SUCCESS -> {
+                        vm.setLoadingText("")
+                        //showDialog
+                        vm.goToList()
+                    }
+                }
+            }
+        }
 
         vm.name.observe(viewLifecycleOwner) {
             binding.name.isErrorEnabled = it.isEmpty()
@@ -111,24 +126,6 @@ class SecondFragment : Fragment() {
         vm.priceError.observe(viewLifecycleOwner) {
             binding.price.isErrorEnabled = it.isNotEmpty()
             if (it.isNotEmpty()) binding.price.error = it
-        }
-        vm.saveResponse.observe(viewLifecycleOwner) {
-            it?.let {
-                when (it.status) {
-                    Status.LOADING -> {
-                        vm.setLoadingText("Saving...")
-                    }
-                    Status.ERROR -> {
-                        vm.setLoadingText("")
-                        vm.setError(it.message!!)
-                    }
-                    Status.SUCCESS -> {
-                        vm.setLoadingText("")
-                        //showDialog
-                        vm.goToList()
-                    }
-                }
-            }
         }
 
         setUpDropDown()

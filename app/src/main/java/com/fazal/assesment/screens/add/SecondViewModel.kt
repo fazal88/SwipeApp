@@ -43,18 +43,6 @@ class SecondViewModel(
     val clickedRemove: LiveData<Boolean>
         get() = _clickedRemove
 
-    fun goToList() {
-        _navigateToList.postValue(true)
-    }
-
-    fun upload() {
-        _clickedUpload.postValue(true)
-    }
-
-    fun remove() {
-        _clickedRemove.postValue(true)
-    }
-
     val name = MutableLiveData<String>("")
     val nameError = MutableLiveData<String>("")
     val type = MutableLiveData<String>("")
@@ -63,11 +51,18 @@ class SecondViewModel(
     val taxError = MutableLiveData<String>("")
     val price = MutableLiveData<String>("")
     val priceError = MutableLiveData<String>("")
-
     val fileUri = MutableLiveData<Uri>(Uri.parse(""))
-
     val saveResponse = repo.saveResponse
 
+    fun goToList() {
+        _navigateToList.postValue(true)
+    }
+    fun upload() {
+        _clickedUpload.postValue(true)
+    }
+    fun remove() {
+        _clickedRemove.postValue(true)
+    }
     fun save() {
         if (valid()) {
             val requestForm = LinkedHashMap<String, RequestBody?>()
@@ -93,7 +88,6 @@ class SecondViewModel(
             }
         }
     }
-
     private fun valid(): Boolean {
         var isValid = true
         if (name.value.isNullOrEmpty()) {
@@ -120,8 +114,6 @@ class SecondViewModel(
         }
         return isValid
     }
-
-
     fun reset() {
         _navigateToList.postValue(false)
         _clickedUpload.postValue(false)
@@ -130,15 +122,12 @@ class SecondViewModel(
         _error.postValue("")
         repo.resetSaveResponse()
     }
-
     fun setUri(uri: Uri) {
         fileUri.postValue(uri)
     }
-
     fun setError(errorText: String) {
         _error.postValue(errorText)
     }
-
     fun setLoadingText(loadingText: String) {
         _loading.postValue(loadingText)
     }

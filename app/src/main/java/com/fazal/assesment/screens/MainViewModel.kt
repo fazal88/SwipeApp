@@ -9,9 +9,7 @@ import com.fazal.assesment.api.SwipeRepositoryImpl
  * Created by Fazal on 01/07/23.
  * Copyright (c) 2023 Mohd Fazal Shaikh. All rights reserved.
  */
-class MainViewModel(
-     repo: SwipeRepositoryImpl
-) : ViewModel() {
+class MainViewModel() : ViewModel() {
 
     init {
 

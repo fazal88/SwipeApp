@@ -29,6 +29,13 @@ class FirstViewModel(
         get() = _error
 
     val searchQuery = MutableLiveData<String>("")
+    val list = repo.listProducts
+
+    init {
+        viewModelScope.launch(Dispatchers.IO) {
+            repo.getProducts()
+        }
+    }
 
     fun clearSearch(){
         searchQuery.postValue("")
@@ -44,14 +51,6 @@ class FirstViewModel(
 
     fun setError(errorText:String){
         _error.postValue(errorText)
-    }
-
-    val list = repo.listProducts
-
-    init {
-        viewModelScope.launch(Dispatchers.IO) {
-            repo.getProducts()
-        }
     }
 
     fun reset() {

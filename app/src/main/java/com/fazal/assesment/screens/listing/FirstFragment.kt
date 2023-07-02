@@ -45,8 +45,7 @@ class FirstFragment : Fragment() {
             }
         }
 
-        val adapter = AdapterProducts()
-            .apply {
+        val adapter = AdapterProducts().apply {
                 vm.list.observe(viewLifecycleOwner) { resource ->
                     when (resource.status) {
                         Status.LOADING -> {

@@ -48,4 +48,8 @@
     <string name="tax_percent">%1$s%%</string>
     <string name="add">Add</string>
     <string name="save">Save Product</string>
+    <string name="str_attention">Attention!</string>
+    <string name="saved_success">Product details saved successfylly. Do you wish to add another?</string>
+    <string name="str_no">No, Go back.</string>
+    <string name="str_yes">Yes</string>
 </resources>

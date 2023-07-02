@@ -1,6 +1,8 @@
 package com.fazal.assesment.screens.add
 
 import android.app.Activity
+import android.content.DialogInterface
+import android.content.DialogInterface.OnDismissListener
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.fazal.assesment.api.Status
 import com.fazal.assesment.databinding.FragmentSecondBinding
+import com.fazal.assesment.utils.showTwoButtonDialog
 import com.github.dhaval2404.imagepicker.ImagePicker
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -51,7 +54,12 @@ class SecondFragment : Fragment() {
         vm.navigateToList.observe(viewLifecycleOwner) {
             it?.let {
                 if (it) {
-                    findNavController().navigate(SecondFragmentDirections.actionSecondFragmentToFirstFragment())
+                    showTwoButtonDialog(requireContext(),
+                        onDismissListener = { dialog, which ->
+                            if(which == DialogInterface.BUTTON_POSITIVE){
+                                findNavController().navigate(SecondFragmentDirections.actionSecondFragmentToFirstFragment())
+                            }
+                        })
                     vm.reset()
                 }
             }

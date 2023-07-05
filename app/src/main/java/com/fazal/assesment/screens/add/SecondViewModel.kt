@@ -76,7 +76,7 @@ class SecondViewModel(
             val fileRequest: MultipartBody.Part? = if (fileUri.value.toString().isNotEmpty()) {
                 fileUri.value?.toFile()?.let {
                     MultipartBody.Part.createFormData(
-                        "files",
+                        "files[]",
                         it.name,
                         it.asRequestBody("image".toMediaTypeOrNull())
                     )

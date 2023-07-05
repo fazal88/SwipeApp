@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import com.fazal.assesment.R
 import java.text.DecimalFormat
@@ -94,4 +95,15 @@ fun View.setVisible(isVisible: Boolean?) {
             View.INVISIBLE
         }
     }
+}
+
+@BindingAdapter("isLoading")
+fun SwipeRefreshLayout.isLoading( isLoading:Boolean?){
+    isLoading?.let {
+        isRefreshing = it
+    }
+}
+@BindingAdapter("onRefresh")
+fun SwipeRefreshLayout.onRefresh( refresh:()->Unit){
+    setOnRefreshListener { refresh() }
 }

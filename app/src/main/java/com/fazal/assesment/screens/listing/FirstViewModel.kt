@@ -32,6 +32,10 @@ class FirstViewModel(
     val list = repo.listProducts
 
     init {
+        getProductList()
+    }
+
+    fun getProductList() {
         viewModelScope.launch(Dispatchers.IO) {
             repo.getProducts()
         }
